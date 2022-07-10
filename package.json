@@ -1,5 +1,4 @@
 {
-  "name": "@jihe/template-library",
   "version": "0.0.1",
   "scripts": {
     "start": "vite",
@@ -7,6 +6,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/styled": "^11.9.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
@@ -17,7 +17,57 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
+    "react-router-dom": "^6.3.0",
     "typescript": "^4.6.3",
     "vite": "^2.9.9"
+  },
+  "name": "@jihe/template-library",
+  "prettier": "@jihe/prettier-config",
+  "stylelint": {
+    "extends": "@jihe/stylelint-config"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@jihe/eslint-config-react"
+    ],
+    "parserOptions": {
+      "project": [
+        "./tsconfig.json",
+        "./tsconfig.node.json",
+        "./tsconfig.examples.json"
+      ]
+    },
+    "rules": {
+      "object-property-newline": [
+        1,
+        {
+          "allowAllPropertiesOnSameLine": true
+        }
+      ],
+      "function-call-argument-newline": [
+        1,
+        "consistent"
+      ],
+      "@typescript-eslint/indent": [
+        1,
+        2,
+        {
+          "offsetTernaryExpressions": true
+        }
+      ]
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,vue}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{css,less}": [
+      "prettier --write",
+      "stylelint --fix"
+    ],
+    "*.{md,json,json5,html,yml,yaml}": [
+      "prettier --write"
+    ]
   }
 }
